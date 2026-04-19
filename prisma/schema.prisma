@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
+  name          String
+  isPremium     Boolean   @default(false)
+  premiumUntil  DateTime?
+  createdAt     DateTime  @default(now())
+
+  recruitments    Recruitment[]  @relation("RecruiterRecruitments")
+  applications    Application[]
+  sentMessages    Message[]      @relation("SentMessages")
+  ratingsGiven    Rating[]       @relation("RatingsGiven")
+  ratingsReceived Rating[]       @relation("RatingsReceived")
+}
+
+model Recruitment {
+  id              String    @id @default(cuid())
+  recruiterId     String
+  title           String
+  description     String
+  gameName        String
+  platform        String
+  genre           String
+  rewardAmount    Int       @default(0)
+  maxPlayers      Int
+  currentPlayers  Int       @default(0)
+  recruitmentType String
+  chatType        String
+  status          String    @default("open")
+  deadline        DateTime?
+  createdAt       DateTime  @default(now())
+
+  recruiter     User          @relation("RecruiterRecruitments", fields: [recruiterId], references: [id])
+  applications  Application[]
+  messages      Message[]
+  ratings       Rating[]
+}
+
+model Application {
+  id            String    @id @default(cuid())
+  recruitmentId String
+  playerId      String
+  status        String    @default("pending")
+  message       String    @default("")
+  createdAt     DateTime  @default(now())
+
+  recruitment   Recruitment @relation(fields: [recruitmentId], references: [id])
+  player        User        @relation(fields: [playerId], references: [id])
+
+  @@unique([recruitmentId, playerId])
+}
+
+model Message {
+  id            String    @id @default(cuid())
+  recruitmentId String
+  senderId      String
+  receiverId    String?
+  content       String
+  createdAt     DateTime  @default(now())
+
+  recruitment   Recruitment @relation(fields: [recruitmentId], references: [id])
+  sender        User        @relation("SentMessages", fields: [senderId], references: [id])
+}
+
+model Rating {
+  id            String    @id @default(cuid())
+  recruitmentId String
+  raterId       String
+  ratedUserId   String
+  score         Int
+  comment       String    @default("")
+  createdAt     DateTime  @default(now())
+
+  recruitment   Recruitment @relation(fields: [recruitmentId], references: [id])
+  rater         User        @relation("RatingsGiven", fields: [raterId], references: [id])
+  ratedUser     User        @relation("RatingsReceived", fields: [ratedUserId], references: [id])
+
+  @@unique([recruitmentId, raterId, ratedUserId])
+}
