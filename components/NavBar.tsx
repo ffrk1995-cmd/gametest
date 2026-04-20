@@ -14,7 +14,7 @@ export default function NavBar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-6">
             <Link href="/" className="text-xl font-bold tracking-tight hover:text-purple-200 transition-colors">
-              🎮 GameTest
+              🎮 IndiePort
             </Link>
             <div className="hidden md:flex items-center gap-4">
               <Link href="/recruitments" className="text-sm hover:text-purple-200 transition-colors font-medium">

@@ -29,6 +29,20 @@ export default function HomePage() {
               無料で始める
             </Link>
           </div>
+          <div className="mt-12 grid grid-cols-3 gap-6 max-w-lg mx-auto text-center">
+            <div>
+              <div className="text-3xl font-bold text-white">無料</div>
+              <div className="text-purple-200 text-sm mt-1">基本機能</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-yellow-300">10%</div>
+              <div className="text-purple-200 text-sm mt-1">手数料のみ</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-white">¥980</div>
+              <div className="text-purple-200 text-sm mt-1">プレミアム/月</div>
+            </div>
+          </div>
         </div>
       </section>
 

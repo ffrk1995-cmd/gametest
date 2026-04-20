@@ -29,7 +29,7 @@ function RecruitmentCard({ r }: { r: Recruitment }) {
 
   return (
     <Link href={`/recruitments/${r.id}`}>
-      <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-200 p-6 flex flex-col gap-3 border border-gray-100 hover:border-purple-200 cursor-pointer h-full">
+      <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-200 p-6 flex flex-col gap-3 border border-gray-100 hover:border-purple-300 hover:-translate-y-0.5 cursor-pointer h-full">
         <div className="flex items-start justify-between gap-2">
           <h2 className="text-lg font-bold text-gray-800 leading-tight line-clamp-2">{r.title}</h2>
           {r.recruiter.isPremium && (
@@ -124,7 +124,10 @@ export default function RecruitmentsPage() {
 
       {loading ? (
         <div className="flex justify-center items-center py-20">
-          <div className="text-gray-400 text-lg">読み込み中...</div>
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-10 h-10 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin" />
+            <div className="text-gray-400 text-sm">読み込み中...</div>
+          </div>
         </div>
       ) : recruitments.length === 0 ? (
         <div className="text-center py-20">

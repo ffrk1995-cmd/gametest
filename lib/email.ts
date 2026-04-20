@@ -8,12 +8,12 @@ export async function sendWelcomeEmail(to: string, name: string) {
   await resend.emails.send({
     from: FROM,
     to,
-    subject: "【GameTest】ご登録ありがとうございます",
+    subject: "【IndiePort】ご登録ありがとうございます",
     html: `
       <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px">
-        <h1 style="color:#7c3aed">🎮 GameTestへようこそ！</h1>
+        <h1 style="color:#7c3aed">🎮 IndiePortへようこそ！</h1>
         <p>${name} さん、ご登録ありがとうございます。</p>
-        <p>インディーゲームのテストプレイヤー募集プラットフォーム <strong>GameTest</strong> をご利用いただけます。</p>
+        <p>インディーゲームのテストプレイヤー募集プラットフォーム <strong>IndiePort</strong> をご利用いただけます。</p>
         <a href="${process.env.NEXTAUTH_URL}/recruitments"
            style="display:inline-block;background:#7c3aed;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;margin-top:16px">
           募集一覧を見る
@@ -29,7 +29,7 @@ export async function sendApplicationEmail(to: string, recruiterName: string, ga
   await resend.emails.send({
     from: FROM,
     to,
-    subject: `【GameTest】「${gameTitle}」に新しい応募がありました`,
+    subject: `【IndiePort】「${gameTitle}」に新しい応募がありました`,
     html: `
       <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px">
         <h2 style="color:#7c3aed">新しい応募通知</h2>
@@ -49,7 +49,7 @@ export async function sendApplicationResultEmail(to: string, playerName: string,
   await resend.emails.send({
     from: FROM,
     to,
-    subject: `【GameTest】「${gameTitle}」の応募結果をお知らせします`,
+    subject: `【IndiePort】「${gameTitle}」の応募結果をお知らせします`,
     html: `
       <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px">
         <h2 style="color:#7c3aed">応募結果のお知らせ</h2>
