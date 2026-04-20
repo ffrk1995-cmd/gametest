@@ -1,6 +1,6 @@
 import { Resend } from "resend"
 
-const FROM = "GameTest <noreply@gametest.jp>"
+const FROM = "IndiePort <onboarding@resend.dev>"
 
 export async function sendWelcomeEmail(to: string, name: string) {
   if (!process.env.RESEND_API_KEY) return
